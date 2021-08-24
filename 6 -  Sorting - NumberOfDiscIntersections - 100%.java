@@ -1,3 +1,4 @@
+
 // you can also use imports, for example:
 // import java.util.*;
 
@@ -12,7 +13,7 @@ class Solution {
 
         for(int i=0; i < k; i++){
 
-            if(i + A[i] >= k - A[k]){
+            if(A[i] >= k-i || A[k] >= k-i || A[i] + A[k] >= k-i ){ // overflow fix
                 intersections++;
             }
         }
@@ -28,6 +29,10 @@ class Solution {
             int intersectionsToTheLeft = countIntersectionsToTheLeft(A, k);
 
             intersections = intersections + intersectionsToTheLeft;
+            
+            if(intersections > 10000000){ // hard limit fix
+                return -1;
+            }
         }
 
         return intersections;
